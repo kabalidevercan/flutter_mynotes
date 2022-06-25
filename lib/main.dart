@@ -7,7 +7,6 @@ import 'package:flutter_yeniden_ogreniyorum/views/loading_view.dart';
 import 'package:flutter_yeniden_ogreniyorum/views/login_view.dart';
 
 import 'package:flutter_yeniden_ogreniyorum/views/register_view.dart';
-import 'dart:developer' as devtools show log;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,10 +24,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: NotesView(),
+      home: HomePage(),
       routes: {
         '/login/': (context) => const LoginView(),
         '/register/': (context) => const RegisterView(),
+        '/notes/': (context) => const NotesView(),
       },
     );
   }
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
 enum MenuAction { logout }
 
 class NotesView extends StatefulWidget {
-  NotesView({Key? key}) : super(key: key);
+  const NotesView({Key? key}) : super(key: key);
 
   @override
   State<NotesView> createState() => _NotesViewState();

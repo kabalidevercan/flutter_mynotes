@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_yeniden_ogreniyorum/firebase_options.dart';
+import 'dart:developer' as devtools show log;
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -62,13 +63,15 @@ class _RegisterViewState extends State<RegisterView> {
                 final user = await FirebaseAuth.instance
                     .createUserWithEmailAndPassword(
                         email: email, password: password);
+                devtools.log(user.toString());
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'weak-password') {
-                  print("Sağlam Şifre girsene ");
+                  devtools.log("Sağlam Şifre girsene ");
                 } else if (e.code == 'email-already-in-use') {
-                  print("Aynı maille kayıt olmuşssun kimi kandırıyon koçum");
+                  devtools
+                      .log("Aynı maille kayıt olmuşssun kimi kandırıyon koçum");
                 } else if (e.code == 'invalid-email') {
-                  print("Geçersiz Email");
+                  devtools.log("Geçersiz Email");
                 }
               }
             },
