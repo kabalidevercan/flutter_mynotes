@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_yeniden_ogreniyorum/constants/routes.dart';
 import 'package:flutter_yeniden_ogreniyorum/services/auth/auth_service.dart';
+import 'package:flutter_yeniden_ogreniyorum/services/auth/firebase_auth_provider.dart';
 
 class EmailVerifyView extends StatefulWidget {
   const EmailVerifyView({Key? key}) : super(key: key);
