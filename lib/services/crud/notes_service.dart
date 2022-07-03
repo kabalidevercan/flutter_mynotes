@@ -21,8 +21,8 @@ class NotesService {
   Stream<List<DatabaseNote>> get allNotes => _notesStreamController.stream;
 
   Future<void> _cacheNotes() async {
-    final allNotes = await getAllNotes();
-    _notes = allNotes.toList();
+    final allNote = await getAllNotes();
+    _notes = allNote.toList();
     _notesStreamController.add(_notes);
   }
 
@@ -263,7 +263,9 @@ class NotesService {
   Future<void> _ensureDbIsOpen() async {
     try {
       await open();
-    } on DatabaseAlreadyOpenException {}
+    } on DatabaseAlreadyOpenException {
+      //empty
+    }
   }
 
   Future<void> open() async {

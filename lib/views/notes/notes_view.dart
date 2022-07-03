@@ -21,6 +21,7 @@ class _NotesViewState extends State<NotesView> {
   void initState() {
     _notesService = NotesService();
     _notesService.open();
+
     super.initState();
   }
 
@@ -36,6 +37,14 @@ class _NotesViewState extends State<NotesView> {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(newNoteRoute);
+            },
+            icon: const Icon(
+              Icons.add,
+            ),
+          ),
           PopupMenuButton<MenuAction>(
             onSelected: (value) async {
               switch (value) {
@@ -69,6 +78,7 @@ class _NotesViewState extends State<NotesView> {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               return StreamBuilder(
+                stream: _notesService.allNotes,
                 builder: ((context, snapshot) {
                   switch (snapshot.connectionState) {
                     case ConnectionState.waiting:
@@ -77,7 +87,6 @@ class _NotesViewState extends State<NotesView> {
                       return LoadingPage();
                   }
                 }),
-                stream: _notesService.allNotes,
               );
             default:
               return const CircularProgressIndicator();
