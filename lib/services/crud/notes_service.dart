@@ -42,7 +42,7 @@ class NotesService {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  //Future<DatabaseNote> updateNote kısmında bence db.update kısmında hata var  güncellenecek note belirtmeden direkt texti veriyoruz.!
+  //
   Future<DatabaseNote> updateNote({
     required DatabaseNote note,
     required String text,
