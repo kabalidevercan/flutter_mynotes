@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_yeniden_ogreniyorum/constants/routes.dart';
 import 'package:flutter_yeniden_ogreniyorum/services/auth/auth_exception.dart';
 import 'package:flutter_yeniden_ogreniyorum/services/auth/auth_service.dart';
-import 'package:flutter_yeniden_ogreniyorum/widgets/show_error_dialog.dart';
+import 'package:flutter_yeniden_ogreniyorum/utilities/dialogs/error_dialog.dart';
+
 import '../firebase_options.dart';
 
 class LoginView extends StatefulWidget {

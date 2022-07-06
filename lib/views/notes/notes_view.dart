@@ -3,7 +3,9 @@ import 'package:flutter_yeniden_ogreniyorum/constants/routes.dart';
 import 'package:flutter_yeniden_ogreniyorum/enums/menu_action.dart';
 import 'package:flutter_yeniden_ogreniyorum/services/auth/auth_service.dart';
 import 'package:flutter_yeniden_ogreniyorum/services/crud/notes_service.dart';
+import 'package:flutter_yeniden_ogreniyorum/utilities/dialogs/logout_dialog.dart';
 import 'package:flutter_yeniden_ogreniyorum/views/loading_view.dart';
+import 'package:flutter_yeniden_ogreniyorum/views/notes/notes_list_view.dart';
 
 class NotesView extends StatefulWidget {
   const NotesView({Key? key}) : super(key: key);
@@ -77,20 +79,13 @@ class _NotesViewState extends State<NotesView> {
                     case ConnectionState.active:
                       if (snapshot.hasData) {
                         final allNotes = snapshot.data as List<DatabaseNote>;
-                        return ListView.builder(
-                          itemBuilder: ((context, index) {
-                            final note = allNotes[index];
-                            return ListTile(
-                              title: Text(
-                                note.text,
-                                maxLines: 1,
-                                softWrap: true,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            );
-                          }),
-                          itemCount: allNotes.length,
-                        );
+                        return NotesListView(
+                            notes: allNotes,
+                            onDeleteNote: (note) async {
+                              await _notesService.deleteNote(
+                                id: note.id,
+                              );
+                            });
                       } else {
                         return const CircularProgressIndicator();
                       }
@@ -108,7 +103,7 @@ class _NotesViewState extends State<NotesView> {
   }
 }
 
-Future<bool> showLogOutDialog(BuildContext context) {
+/* Future<bool> showLogOutDialog(BuildContext context) {
   return showDialog<bool>(
       context: context,
       builder: (context) {
@@ -132,3 +127,4 @@ Future<bool> showLogOutDialog(BuildContext context) {
         );
       }).then((value) => value ?? false);
 }
+ */
